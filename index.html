@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <title>Kickball Sign-up</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Kickball Team</h2>
+        
+        <!-- Table of the kickball players-->
+        <table class="table table-striped" id="dataTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!--My example row with Big Dave signing up-->
+            <tr>
+              <td>1</td>
+              <td>Big Dave</td>
+              <td>bigdave@aol.com</td>
+            </tr>
+          </tbody>
+        </table>
+    <hr>
+
+<!-- Form to sign up for kickball -->
+  <h2>Join Team</h2>
+  <form id="addPlayerForm">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Join</button>
+  </form>
+</div>
+
+<script src="node_modules/jquery/dist/jquery.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+<script>
+    $(document).ready(function() {
+      // Counter for generating sign up number
+      let counter = 2; // Start with 2 since the first is the example player
+  
+      // Form submit event
+      $('#addPlayerForm').submit(function(event) {
+        event.preventDefault();
+  
+        // Get name and email from the form
+        const name = $('#name').val();
+        const email = $('#email').val();
+  
+        // Append a new player to the table
+        $('#dataTable tbody').append(`
+          <tr>
+            <td>${counter}</td>
+            <td>${name}</td>
+            <td>${email}</td>
+          </tr>
+        `);
+  
+        // The counter that makes the next sign up higher
+        counter++;
+  
+        // Clear the form inputs after they sign up
+        $('#name').val('');
+        $('#email').val('');
+      });
+    });
+  </script>
+
+</body>
+</html>
